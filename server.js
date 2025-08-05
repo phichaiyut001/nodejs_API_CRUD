@@ -10,7 +10,7 @@ const corsOption = {
 };
 
 app.use(cors(corsOption));
-
+app.use(bodyParser.json());
 let conn = null;
 
 const initMysql = async () => {
@@ -22,13 +22,26 @@ const initMysql = async () => {
   });
 };
 
-app.get("/testdb", async (req, res) => {
+app.get("/users", async (req, res) => {
+  const result = await conn.query("SELECT * FROM users");
+  res.json(result[0]);
+});
+
+app.post("/users", async (req, res) => {
   try {
-    const result = await conn.query("SELECT * FROM users");
-    res.json(result[0]);
+    let user = req.body;
+    const result = await conn.query("INSERT INTO users SET ?", user);
+
+    res.json({
+      message: "insert ok",
+      data: result[0],
+    });
   } catch (error) {
-    console.error("Error fetching users:", error.message);
-    res.status(500).json({ error: "Error fetching users" });
+    console.log("error message", error.message);
+
+    res.status(500).json({
+      message: "someting wrong",
+    });
   }
 });
 
