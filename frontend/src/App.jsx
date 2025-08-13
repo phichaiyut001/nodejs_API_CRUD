@@ -9,9 +9,9 @@ function App() {
   const [array, setArray] = useState([]);
 
   const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:8080/api");
-    setArray(response.data.car);
-    console.log(response.data.car);
+    const response = await axios.get("http://localhost:8080/users");
+    setArray(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -36,14 +36,6 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        {array.map((car, index) => (
-          <div key={index}>
-            <p>
-              {car}
-              <br />
-            </p>
-          </div>
-        ))}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
