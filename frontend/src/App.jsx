@@ -1,45 +1,36 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Create from "../pages/Create";
+import User from "../pages/User";
+import Navbar from "../pages/nav";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [array, setArray] = useState([]);
+  // const fetchAPI = async () => {
+  //   const response = await axios.get("http://localhost:8080/users");
+  //   setArray(response.data);
+  //   console.log(response.data);
+  // };
 
-  const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:8080/users");
-    setArray(response.data);
-    console.log(response.data);
-  };
-
-  useEffect(() => {
-    fetchAPI();
-  }, []);
+  // useEffect(() => {
+  //   fetchAPI();
+  // }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Navbar />
+      <div className="container mt-5">
+        {/* Router */}
+        <Routes>
+          <Route path="/" />
+          <Route path="/create" element={<Create />} />
+          <Route path="/users" element={<User />} />
+          {/* Fallback route */}
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

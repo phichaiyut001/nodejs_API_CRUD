@@ -8,7 +8,7 @@ const app = express();
 const corsOption = {
   origin: ["http://localhost:5173"],
 };
-
+app.use(express.json());
 app.use(cors(corsOption));
 app.use(bodyParser.json());
 let conn = null;
