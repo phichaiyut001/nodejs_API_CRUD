@@ -8,8 +8,7 @@ export default function User() {
   const fetchAPI = async () => {
     try {
       const response = await axios.get("http://localhost:8080/users");
-
-      console.log(response.data);
+      setUsers(response.data);
     } catch (err) {
       console.error("Error fetching users:", err);
     }
