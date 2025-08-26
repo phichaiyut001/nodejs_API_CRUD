@@ -1,26 +1,41 @@
-import React, { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { Table, Spinner, Alert, Button } from "react-bootstrap";
 
-export default function User() {
+export default function UserTable() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const fetchAPI = async () => {
+  // ✅ ฟังก์ชัน fetch แยกออกมา
+  const fetchUsers = async () => {
     try {
+      setLoading(true);
+      setError(null);
+
       const response = await axios.get("http://localhost:8080/users");
       setUsers(response.data);
     } catch (err) {
-      console.error("Error fetching users:", err);
+      setError("ไม่สามารถโหลดข้อมูลได้");
+    } finally {
+      setLoading(false);
     }
   };
 
+  // ✅ เรียกครั้งแรกตอน mount
   useEffect(() => {
-    fetchAPI();
+    fetchUsers();
   }, []);
 
   return (
-    <>
-      <div className="container">
+    <div className="container">
+      <h3>Users</h3>
+
+      {/* ✅ แสดงสถานะ */}
+      {loading && <Spinner animation="border" />}
+      {error && <Alert variant="danger">{error}</Alert>}
+
+      {!loading && !error && (
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -48,7 +63,12 @@ export default function User() {
             ))}
           </tbody>
         </Table>
-      </div>
-    </>
+      )}
+
+      {/* ปุ่ม reload */}
+      <Button onClick={fetchUsers} disabled={loading}>
+        Reload
+      </Button>
+    </div>
   );
 }
