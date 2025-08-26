@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import Table from "react-bootstrap/Table";
 function Create() {
   const [formData, setFormData] = useState({
     firstname: "",

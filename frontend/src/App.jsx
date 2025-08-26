@@ -8,15 +8,7 @@ import User from "../pages/User";
 import Navbar from "../pages/nav";
 
 function App() {
-  // const fetchAPI = async () => {
-  //   const response = await axios.get("http://localhost:8080/users");
-  //   setArray(response.data);
-  //   console.log(response.data);
-  // };
 
-  // useEffect(() => {
-  //   fetchAPI();
-  // }, []);
 
   return (
     <>
