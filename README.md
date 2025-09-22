@@ -13,9 +13,13 @@ API โปรเจกต์สำหรับ **CRUD (Create, Read, Update, Del
 
 .
 ├── server.js # main server file
+
 ├── package.json # project metadata & scripts
+
 ├── package-lock.json
+
 ├── .gitignore
+
 └── frontend/ # frontend (ถ้ามี)
 
 yaml
