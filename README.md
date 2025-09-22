@@ -11,7 +11,6 @@ API โปรเจกต์สำหรับ **CRUD (Create, Read, Update, Del
 
 ## 📂 โครงสร้างโปรเจกต์
 
-.
 ├── server.js # main server file
 
 ├── package.json # project metadata & scripts
@@ -22,8 +21,6 @@ API โปรเจกต์สำหรับ **CRUD (Create, Read, Update, Del
 
 └── frontend/ # frontend (ถ้ามี)
 
-yaml
-คัดลอกโค้ด
 
 ---
 
